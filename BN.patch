@@ -1,0 +1,71 @@
+diff --git a/packages/web3/types.d.ts b/packages/web3/types.d.ts
+index f2293d85..ddf25c76 100644
+--- a/packages/web3/types.d.ts
++++ b/packages/web3/types.d.ts
+@@ -1,4 +1,4 @@
+-import { BigNumber } from 'bn.js'
++import * as BN  from 'bn.js'
+ import * as us from 'underscore'
+ 
+ 
+@@ -271,7 +271,7 @@ type Unit = "kwei" | "femtoether" | "babbage" | "mwei" | "picoether" | "lovelace
+ export type BlockType = "latest" | "pending" | "genesis" | number
+ export declare interface Iban { }
+ export declare interface Utils {
+-  BN: BigNumber // TODO only static-definition
++  BN: BN // TODO only static-definition
+   isBN(any: any): boolean
+   isBigNumber(any: any): boolean
+   isAddress(any: any): boolean
+@@ -280,15 +280,15 @@ export declare interface Utils {
+   asciiToHex(val: string): string
+   hexToAscii(val: string): string
+   bytesToHex(val: number[]): string
+-  numberToHex(val: number | BigNumber): string
++  numberToHex(val: number | BN): string
+   checkAddressChecksum(address: string): boolean
+   fromAscii(val: string): string
+-  fromDecimal(val: string | number | BigNumber): string
++  fromDecimal(val: string | number | BN): string
+   fromUtf8(val: string): string
+-  fromWei(val: string | number | BigNumber, unit: Unit): string | BigNumber
++  fromWei(val: string | number | BN, unit: Unit): string | BN
+   hexToBytes(val: string): number[]
+-  hexToNumber(val: string | number | BigNumber): number
+-  hexToNumberString(val: string | number | BigNumber): string
++  hexToNumber(val: string | number | BN): number
++  hexToNumberString(val: string | number | BN): string
+   hexToString(val: string): string
+   hexToUtf8(val: string): string
+   keccak256(val: string): string
+@@ -301,12 +301,12 @@ export declare interface Utils {
+   randomHex(bytes: number): string
+   stringToHex(val: string): string
+   toAscii(hex: string): string
+-  toBN(any: any): BigNumber
++  toBN(any: any): BN
+   toChecksumAddress(val: string): string
+   toDecimal(val: any): number
+   toHex(val: any): string
+   toUtf8(val: any): string
+-  toWei(val: string | number | BigNumber, unit: Unit): string | BigNumber
++  toWei(val: string | number | BN, unit: Unit): string | BN
+   unitMap: any
+ }
+ export declare interface Contract {
+@@ -363,7 +363,7 @@ export declare class Eth {
+   Iban: new (address: string) => Iban
+   Contract: new (jsonInterface: any[], address?: string, options?: {
+     from?: string
+-    gas?: string | number | BigNumber
++    gas?: string | number | BN
+     gasPrice?: number
+     data?: string
+   }) => Contract
+@@ -471,4 +471,4 @@ export declare class BatchRequest {
+   constructor()
+   add(request: Request): void //
+   execute(): void
+-}
+\ No newline at end of file
++}
